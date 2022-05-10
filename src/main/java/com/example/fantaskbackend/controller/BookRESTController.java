@@ -1,4 +1,4 @@
 package com.example.fantaskbackend.controller;
 
-public class test {
+public class BookRESTController {
 }
