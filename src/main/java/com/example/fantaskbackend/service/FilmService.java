@@ -1,14 +1,12 @@
 package com.example.fantaskbackend.service;
 
-import com.example.fantaskbackend.repository.BookRepository;
+import com.example.fantaskbackend.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BookService {
+public class FilmService {
 
     @Autowired
-    private BookRepository bookRepository;
-
-
+    private FilmRepository filmRepository;
 }
