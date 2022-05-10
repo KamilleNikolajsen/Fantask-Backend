@@ -1,7 +1,11 @@
 package com.example.fantaskbackend.model;
 
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.persistence.*;
+@Getter
+@Setter
 @Entity
 public class Book {
 
@@ -10,6 +14,5 @@ public class Book {
     private Long bookId;
 
     //@Column(nullable = false)
-
 
 }
