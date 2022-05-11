@@ -1,12 +1,10 @@
 package com.example.fantaskbackend.service;
 
 import com.example.fantaskbackend.model.Book;
-import com.example.fantaskbackend.model.Comic;
 import org.apache.lucene.search.Query;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.FullTextQuery;
 import org.hibernate.search.jpa.Search;
-import com.example.fantaskbackend.repository.*;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,16 +15,6 @@ import java.util.List;
 @Component
 public class AllService {
 
-    @Autowired
-    BookRepository bookRepository;
-    @Autowired
-    FilmRepository filmRepository;
-    @Autowired
-    ComicRepository comicRepository;
-    @Autowired
-    FigureRepository figureRepository;
-    @Autowired
-    GameRepository gameRepository;
     @Autowired
     EntityManager entityManager;
 

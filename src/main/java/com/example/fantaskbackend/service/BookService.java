@@ -1,6 +1,7 @@
 package com.example.fantaskbackend.service;
 
 import com.example.fantaskbackend.model.Book;
+import com.example.fantaskbackend.model.fkmodels.Publisher;
 import com.example.fantaskbackend.repository.BookRepository;
 import org.apache.lucene.search.Query;
 import org.hibernate.search.jpa.FullTextEntityManager;
@@ -17,7 +18,7 @@ import java.util.List;
 public class BookService {
 
     @Autowired
-    private BookRepository bookRepository;
+    BookRepository bookRepository;
 
     @Autowired
     EntityManager entityManager;
@@ -42,5 +43,9 @@ public class BookService {
 
         List<Book> books = jpaQuery.getResultList();
         return books;
+    }
+
+    public List<Publisher> getPublishers() {
+        return null;
     }
 }
