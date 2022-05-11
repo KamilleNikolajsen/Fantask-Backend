@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "bog")
 public class Book {
 
     @Id
@@ -80,7 +80,7 @@ public class Book {
     private boolean outOfStock;
 
     @Column(nullable = false, name = "skjul")
-    private boolean hidden;
+    private boolean hide;
 
     @Column(nullable = false, name = "tilbud")
     private boolean onSale;
