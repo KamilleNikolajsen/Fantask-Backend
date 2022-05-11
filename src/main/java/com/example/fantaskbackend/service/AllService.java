@@ -1,15 +1,12 @@
 package com.example.fantaskbackend.service;
 
-import com.example.fantaskbackend.model.Book;
-import org.apache.lucene.search.Query;
-import org.hibernate.search.jpa.FullTextEntityManager;
-import org.hibernate.search.jpa.FullTextQuery;
-import org.hibernate.search.jpa.Search;
-import org.hibernate.search.query.dsl.QueryBuilder;
+import com.example.fantaskbackend.model.*;
+import org.hibernate.search.mapper.orm.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -19,29 +16,14 @@ public class AllService {
     EntityManager entityManager;
 
     public List<Object> searchCrossAll(Object searchInput) {
-    /*    //https://www.baeldung.com/hibernate-search
+        List<Object> objects = Search.session(entityManager)
+                .search(Arrays.asList(Book.class, Comic.class, Film.class, Figure.class, Game.class))
+                .where(f -> f.match()
+                        .fields("authors.name", "fk_serie", "underserie", "nummer", "titel")
+                        .matching(searchInput)
+                        .fuzzy())
+                .fetchAllHits();
 
-        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
-
-        QueryBuilder queryBuilder = fullTextEntityManager
-                .getSearchFactory()
-                .buildQueryBuilder()
-                .forEntity(Book.class)
-                .get();
-
-        Query query = queryBuilder
-                .keyword()
-                .fuzzy()
-                .onFields("fk_forfatter", "fk_serie", "nummer", "titel")
-                .matching(searchInput)
-                .createQuery();
-
-        FullTextQuery jpaQuery = fullTextEntityManager.createFullTextQuery(query, Book.class);
-
-        List<Object> books = jpaQuery.getResultList();
-        return books;
-
-     */
-        return null;
+        return objects;
     }
 }

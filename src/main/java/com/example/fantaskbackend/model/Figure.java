@@ -2,6 +2,7 @@ package com.example.fantaskbackend.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.Date;
 @Entity(name = "figurer")
 @Getter
 @Setter
+@Indexed
 public class Figure {
 
     @Id
@@ -47,7 +49,7 @@ public class Figure {
     private String description;
 
     @Column(name = "antal")
-    private int amount;
+    private Integer amount;
 
     @Column(name = "dato", nullable = false)
     private Date date;

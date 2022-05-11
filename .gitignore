@@ -31,3 +31,19 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Indexing Lucene we dont want on Git ###
+*.dvm
+*.dvd
+*.doc
+*.tim
+*.tip
+*.tmd
+*.cfe
+*.cfs
+*.si
+*.fdt
+*.fdm
+*.fdx
+*.fnm
+*.lock

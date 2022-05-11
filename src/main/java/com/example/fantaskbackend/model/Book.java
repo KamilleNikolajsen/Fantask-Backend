@@ -1,13 +1,18 @@
 package com.example.fantaskbackend.model;
 
+import com.example.fantaskbackend.model.fkmodels.Authors;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
+@Indexed
 @Entity(name = "bog")
 public class Book {
 
@@ -21,6 +26,15 @@ public class Book {
 
     @Column(name = "fk_serie")
     private Long series;
+
+    @ManyToMany()
+    @JoinTable(
+           name = "forfatter_tegneserier_bog",
+            joinColumns = {@JoinColumn(name = "fk_bog")},
+            inverseJoinColumns = {@JoinColumn(name = "fk_forfatter")}
+    )
+    private Set<Authors> authors= new HashSet<>();
+
 
     @Column(name = "fk_forfatter")
     private Long author;
@@ -59,7 +73,7 @@ public class Book {
     private String description;
 
     @Column(name = "sider")
-    private int pages;
+    private Integer pages;
 
     @Column(nullable = false, name = "dato")
     private Date date;

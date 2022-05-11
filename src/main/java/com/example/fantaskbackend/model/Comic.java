@@ -2,6 +2,7 @@ package com.example.fantaskbackend.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.Date;
 @Entity(name = "tegneserier")
 @Getter
 @Setter
+@Indexed
 public class Comic {
 
     @Id
