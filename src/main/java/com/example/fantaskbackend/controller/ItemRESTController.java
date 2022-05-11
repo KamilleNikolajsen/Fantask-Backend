@@ -4,6 +4,7 @@ import com.example.fantaskbackend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -13,25 +14,23 @@ import java.util.List;
 public class ItemRESTController {
 
     @Autowired
-    private BookService bookService;
-
+    BookService bookService;
     @Autowired
-    private ComicService comicService;
-
+    ComicService comicService;
     @Autowired
-    private GameService gameService;
-
+    GameService gameService;
     @Autowired
-    private FigureService figureService;
-
+    FigureService figureService;
     @Autowired
-    private FilmService filmService;
-
+    FilmService filmService;
     @Autowired
-    private EmployeeService employeeService;
+    EmployeeService employeeService;
+    @Autowired
+    AllService allService;
 
     @PostMapping("/category")
-    public List<Object> searchAllCategories() {
+    public List<Object> searchAllCategories(@RequestBody Object input) {
+
         return null;
     }
 

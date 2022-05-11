@@ -1,11 +1,12 @@
 package com.example.fantaskbackend.service;
 
 import com.example.fantaskbackend.model.Book;
-import com.example.fantaskbackend.repository.BookRepository;
+import com.example.fantaskbackend.model.Comic;
 import org.apache.lucene.search.Query;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.FullTextQuery;
 import org.hibernate.search.jpa.Search;
+import com.example.fantaskbackend.repository.*;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,15 +15,24 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 @Component
-public class BookService {
+public class AllService {
 
     @Autowired
-    private BookRepository bookRepository;
-
+    BookRepository bookRepository;
+    @Autowired
+    FilmRepository filmRepository;
+    @Autowired
+    ComicRepository comicRepository;
+    @Autowired
+    FigureRepository figureRepository;
+    @Autowired
+    GameRepository gameRepository;
     @Autowired
     EntityManager entityManager;
 
-    public List<Book> searchFullText(Object searchInput) {
+    public List<Object> searchCrossAll(Object searchInput) {
+        //https://www.baeldung.com/hibernate-search
+
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
 
         QueryBuilder queryBuilder = fullTextEntityManager
@@ -40,7 +50,7 @@ public class BookService {
 
         FullTextQuery jpaQuery = fullTextEntityManager.createFullTextQuery(query, Book.class);
 
-        List<Book> books = jpaQuery.getResultList();
+        List<Object> books = jpaQuery.getResultList();
         return books;
     }
 }
