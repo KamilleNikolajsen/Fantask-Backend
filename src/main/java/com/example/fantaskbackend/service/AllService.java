@@ -19,7 +19,7 @@ public class AllService {
     EntityManager entityManager;
 
     public List<Object> searchCrossAll(Object searchInput) {
-        //https://www.baeldung.com/hibernate-search
+    /*    //https://www.baeldung.com/hibernate-search
 
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
 
@@ -40,5 +40,8 @@ public class AllService {
 
         List<Object> books = jpaQuery.getResultList();
         return books;
+
+     */
+        return null;
     }
 }

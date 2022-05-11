@@ -22,6 +22,6 @@ public class LuceneIndexer implements ApplicationRunner {
         FullTextEntityManager fullTextEntityManager
                 = Search.getFullTextEntityManager(entityManager);
 
-        fullTextEntityManager.createIndexer().startAndWait();
+        //fullTextEntityManager.createIndexer().startAndWait();
     }
 }

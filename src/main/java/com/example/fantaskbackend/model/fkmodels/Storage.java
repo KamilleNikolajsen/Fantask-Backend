@@ -18,7 +18,7 @@ public class Storage {
   @Column(name = "barcode")
   private int storageBarcode;
 
-  @Column(name = "min-antal")
+  @Column(name = "min_antal")
   private int storageMinAmount;
 
   @Column(name = "antal")

@@ -1,8 +1,11 @@
 package com.example.fantaskbackend.service;
 
 import com.example.fantaskbackend.model.Book;
+import com.example.fantaskbackend.model.fkmodels.BookGenre;
 import com.example.fantaskbackend.model.fkmodels.Publisher;
 import com.example.fantaskbackend.repository.BookRepository;
+import com.example.fantaskbackend.repository.fkrepositories.BookGenreRepository;
+import com.example.fantaskbackend.repository.fkrepositories.PublisherRepository;
 import org.apache.lucene.search.Query;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.FullTextQuery;
@@ -18,10 +21,14 @@ import java.util.List;
 public class BookService {
 
     @Autowired
-    BookRepository bookRepository;
+    private BookRepository bookRepository;
+    @Autowired
+    private PublisherRepository publisherRepository;
+    @Autowired
+    private BookGenreRepository bookGenreRepository;
 
     @Autowired
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     public List<Book> searchFullText(Object searchInput) {
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
@@ -46,6 +53,11 @@ public class BookService {
     }
 
     public List<Publisher> getPublishers() {
-        return null;
+        return publisherRepository.findAllBookPublishers();
+    }
+
+    public List<BookGenre> getBookGenres() {
+        List<BookGenre> bookGenres = bookGenreRepository.findAll();
+        return bookGenres;
     }
 }

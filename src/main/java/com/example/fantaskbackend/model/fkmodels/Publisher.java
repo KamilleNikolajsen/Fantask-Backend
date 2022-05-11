@@ -27,7 +27,7 @@ public class Publisher {
   @Column(name = "adresse")
   private String publisherAddress;
 
-  @Column(name = "postnummer/by")
+  @Column(name = "postnummer_by")
   private String publisherCity;
 
   @Column(name = "land")
