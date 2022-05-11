@@ -28,6 +28,9 @@ public class Comic {
     @Column(name = "fk_tegner_tegneserie")
     private Long artistComic;
 
+    @Column(name = "fk_forfatter_tegneserier_bog")
+    private Long author;
+
     @Column(name = "fk_underserie")
     private Long subseries;
 
@@ -35,7 +38,7 @@ public class Comic {
     private Long storage;
 
     @Column(name = "nummer")
-    private int number;
+    private String number;
 
     @Column(name = "titel")
     private String title;
