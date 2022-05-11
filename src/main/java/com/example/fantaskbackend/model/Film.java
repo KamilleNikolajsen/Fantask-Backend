@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "film")
+@Entity
 @Getter
 @Setter
 public class Film {

@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "figur")
+@Entity(name = "figurer")
 @Getter
 @Setter
 public class Figure {
