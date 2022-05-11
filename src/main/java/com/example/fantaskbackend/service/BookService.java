@@ -20,15 +20,18 @@ import java.util.List;
 @Component
 public class BookService {
 
-    @Autowired
-    private BookRepository bookRepository;
-    @Autowired
-    private PublisherRepository publisherRepository;
-    @Autowired
-    private BookGenreRepository bookGenreRepository;
+    private final BookRepository bookRepository;
+    private final PublisherRepository publisherRepository;
+    private final BookGenreRepository bookGenreRepository;
 
-    @Autowired
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
+
+    public BookService(BookRepository bookRepository, PublisherRepository publisherRepository, BookGenreRepository bookGenreRepository, EntityManager entityManager) {
+        this.bookRepository = bookRepository;
+        this.publisherRepository = publisherRepository;
+        this.bookGenreRepository = bookGenreRepository;
+        this.entityManager = entityManager;
+    }
 
     public List<Book> searchFullText(Object searchInput) {
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
