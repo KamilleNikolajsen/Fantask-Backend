@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 @RestController
@@ -31,7 +32,7 @@ public class ItemRESTController {
     @PostMapping("/category/all")
     public List<Object> searchAllCategories(@RequestBody Object input) {
 
-        List<Object> items = allService.searchCrossAll(input);
+        List<Object> items = allService.searchCrossAll(input.toString().split("=")[1]);
         return items;
     }
 }
