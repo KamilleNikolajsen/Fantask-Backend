@@ -32,7 +32,7 @@ public class GameManufacturer {
   @Column(name = "adresse")
   private String gameManufacturerAddress;
 
-  @Column(name = "postnummer/by")
+  @Column(name = "postnummer_by")
   private String gameManufacturerCity;
 
   @Column(name = "land")
