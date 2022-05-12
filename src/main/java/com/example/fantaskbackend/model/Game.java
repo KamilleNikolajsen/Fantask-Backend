@@ -42,8 +42,9 @@ public class Game {
     @JoinColumn(name = "fk_underserie")
     private GameSubseries gameSubseries;
 
-    @Column(name = "fk_underserie")
+    /*@Column(name = "fk_underserie")
     private Long subseries;
+     */
 
     @Column(name = "fk_kategori")
     private Long category;
