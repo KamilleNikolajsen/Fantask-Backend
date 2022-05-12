@@ -1,9 +1,12 @@
 package com.example.fantaskbackend.model.fkmodels;
 
+import com.example.fantaskbackend.model.Figure;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "figur_kategorier")
@@ -21,5 +24,8 @@ public class FigureCategories {
 
   @Column(nullable = false, name = "list_type_id")
   private int listTypeId;
+
+  @OneToMany(mappedBy = "figureCategory")
+  private Set<Figure> figures = new HashSet<>();
 
 }

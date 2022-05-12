@@ -1,5 +1,6 @@
 package com.example.fantaskbackend.model;
 
+import com.example.fantaskbackend.model.fkmodels.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
@@ -21,17 +22,25 @@ public class Figure {
     @Column(name = "figur_nummer", nullable = false)
     private String figureNumber;
 
+    @ManyToOne()
     @Column(name = "fk_figur_kategori", nullable = false)
-    private Long category;
+    private FigureCategories figureCategory;
+    //private Long category;
 
+    @ManyToOne()
     @Column(name = "fk_serie")
-    private Long series;
+    private FigureSeries figureSeries;
+    //private Long series;
 
+    @ManyToOne()
     @Column(name = "fk_lager")
-    private Long storage;
+    private Storage storage;
+    //private Long storage;
 
+    @ManyToOne()
     @Column(name = "fk_figur_producent")
-    private Long manufacturer;
+    private GameManufacturer manufacturer;
+    //private Long manufacturer;
 
     @Column(name = "producent_id", nullable = false)
     private String manufacturerId;

@@ -1,9 +1,12 @@
 package com.example.fantaskbackend.model.fkmodels;
 
+import com.example.fantaskbackend.model.Book;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "bog_genre")
@@ -22,5 +25,7 @@ public class BookGenre {
   @Column(nullable = false, name = "list_type_id")
   private int listTypeId;
 
+  @OneToMany(mappedBy = "bookGenre")
+  private Set<Book> books = new HashSet<>();
 
 }
