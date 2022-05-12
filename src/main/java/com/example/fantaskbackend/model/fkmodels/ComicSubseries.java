@@ -3,6 +3,7 @@ package com.example.fantaskbackend.model.fkmodels;
 import com.example.fantaskbackend.model.Comic;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -19,6 +20,7 @@ public class ComicSubseries {
   @Column(name = "id")
   private Long comicSubseriesId;
 
+  @FullTextField
   @Column(nullable = false, name = "underserie_navn")
   private String comicSubseriesName;
 

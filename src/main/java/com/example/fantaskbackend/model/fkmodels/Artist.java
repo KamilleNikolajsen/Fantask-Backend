@@ -3,6 +3,7 @@ package com.example.fantaskbackend.model.fkmodels;
 import com.example.fantaskbackend.model.Comic;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -20,6 +21,7 @@ public class Artist {
   private Long artistId;
 
   @Column(nullable = false, name = "tegner_navn")
+  @FullTextField
   private String artistName;
 
   private String info;

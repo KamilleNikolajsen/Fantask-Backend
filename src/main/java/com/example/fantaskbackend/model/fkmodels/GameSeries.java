@@ -4,6 +4,7 @@ import com.example.fantaskbackend.model.Book;
 import com.example.fantaskbackend.model.Game;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -20,6 +21,7 @@ public class GameSeries {
   @Column(name = "id")
   private Long gameSeriesId;
 
+  @FullTextField
   @Column(nullable = false, name = "serie_navn")
   private String gameSeriesName;
 
