@@ -63,12 +63,12 @@ public class Book {
     //private Long category;
 
     @ManyToOne()
-    @Column(name = "fk_genre")
+    @JoinColumn(name = "fk_genre")
     private BookGenre bookGenre;
     //private Long genre;
 
     @ManyToOne
-    @Column(name = "fk_lager")
+    @JoinColumn(name = "fk_lager")
     private Storage storage;
     //private Long storage;
 

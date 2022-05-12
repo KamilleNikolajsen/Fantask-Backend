@@ -12,7 +12,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "tegneserier")
+@Entity
+@Table(name = "tegneserier")
 @Getter
 @Setter
 @Indexed
@@ -31,12 +32,12 @@ public class Comic {
     //private Long series;
 
     @ManyToOne()
-    @Column(name = "fk_forlag")
+    @JoinColumn(name = "fk_forlag")
     private Publisher publisher;
     //private Long publisher;
 
     @ManyToOne()
-    @Column(name = "fk_type")
+    @JoinColumn(name = "fk_type")
     private ComicTypes comicType;
     //private Long type;
 
@@ -73,7 +74,7 @@ public class Comic {
     //private Long subseries;
 
     @ManyToOne()
-    @Column(name = "fk_lager")
+    @JoinColumn(name = "fk_lager")
     private Storage storage;
     //private Long storage;
 

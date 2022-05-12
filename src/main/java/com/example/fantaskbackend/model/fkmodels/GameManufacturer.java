@@ -1,6 +1,7 @@
 package com.example.fantaskbackend.model.fkmodels;
 
 import com.example.fantaskbackend.model.Figure;
+import com.example.fantaskbackend.model.Game;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -57,4 +58,7 @@ public class GameManufacturer {
 
   @OneToMany(mappedBy = "manufacturer")
   private Set<Figure> figures = new HashSet<>();
+
+  @OneToMany(mappedBy = "manufacturer")
+  private Set<Game> games = new HashSet<>();
 }
