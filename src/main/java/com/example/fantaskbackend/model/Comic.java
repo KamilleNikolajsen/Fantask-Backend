@@ -1,6 +1,6 @@
 package com.example.fantaskbackend.model;
 
-import com.example.fantaskbackend.model.fkmodels.Authors;
+import com.example.fantaskbackend.model.fkmodels.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
@@ -23,8 +23,12 @@ public class Comic {
     @Column(name = "id")
     private Long comicId;
 
-    @Column(name = "fk_serie")
-    private Long series;
+    @ManyToOne()
+    @JoinColumn(name = "fk_serie")
+    private ComicSeries comicSeries;
+
+   //@Column(name = "fk_serie")
+    //private Long series;
 
     @Column(name = "fk_forlag")
     private Long publisher;
@@ -32,6 +36,16 @@ public class Comic {
     @Column(name = "fk_type")
     private Long type;
 
+    @ManyToMany()
+    @IndexedEmbedded
+    @JoinTable(
+            name = "tegner_tegneserier",
+            joinColumns = {@JoinColumn(name = "fk_tegneserier")},
+            inverseJoinColumns = {@JoinColumn(name = "fk_tegner")}
+    )
+    private Set<Artist> artists= new HashSet<>();
+
+    // Slettes når alt spiller
     @Column(name = "fk_tegner_tegneserie")
     private Long artistComic;
 
@@ -46,6 +60,10 @@ public class Comic {
 
     @Column(name = "fk_forfatter_tegneserier_bog")
     private Long author;
+
+    @ManyToOne()
+    @JoinColumn(name = "fk_underserie")
+    private ComicSubseries comicSubserie;
 
     @Column(name = "fk_underserie")
     private Long subseries;

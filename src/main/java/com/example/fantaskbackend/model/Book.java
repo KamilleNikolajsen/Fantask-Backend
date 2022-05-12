@@ -45,7 +45,7 @@ public class Book {
     )
     private Set<Authors> authors= new HashSet<>();
 
-
+// fjern når vi er sirke på det hele spiller
     @Column(name = "fk_forfatter")
     private Long author;
 
