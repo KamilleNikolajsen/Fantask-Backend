@@ -1,8 +1,6 @@
 package com.example.fantaskbackend.model;
 
-import com.example.fantaskbackend.model.fkmodels.BookSeries;
-import com.example.fantaskbackend.model.fkmodels.GameSeries;
-import com.example.fantaskbackend.model.fkmodels.GameSubseries;
+import com.example.fantaskbackend.model.fkmodels.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
@@ -10,7 +8,8 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "spil")
+@Entity
+@Table(name = "spil")
 @Getter
 @Setter
 @Indexed
@@ -46,20 +45,30 @@ public class Game {
     private Long subseries;
      */
 
-    @Column(name = "fk_kategori")
-    private Long category;
+    @ManyToOne()
+    @JoinColumn(name = "fk_kategori")
+    private GameCategories gameCategory;
+    //private Long category;
 
-    @Column(name = "fk_type")
-    private Long type;
+    @ManyToOne()
+    @JoinColumn(name = "fk_type")
+    private GameTypes gameType;
+    //private Long type;
 
-    @Column(name = "fk_kateogori_type")
-    private Long categoryType;
+    @ManyToOne()
+    @JoinColumn(name = "fk_kateogori_type")
+    private GameCategoryTypes gameCategoryType;
+    //private Long categoryType;
 
-    @Column(name = "fk_spil_producent")
-    private Long manufacturer;
+    @ManyToOne()
+    @JoinColumn(name = "fk_spil_producent")
+    private GameManufacturer manufacturer;
+    //private Long manufacturer;
 
-    @Column(name = "fk_lager")
-    private Long storage;
+    @ManyToOne()
+    @JoinColumn(name = "fk_lager")
+    private Storage storage;
+    //private Long storage;
 
     @Column(name = "titel")
     private String title;

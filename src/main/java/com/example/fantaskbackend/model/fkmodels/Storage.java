@@ -1,8 +1,6 @@
 package com.example.fantaskbackend.model.fkmodels;
 
-import com.example.fantaskbackend.model.Book;
-import com.example.fantaskbackend.model.Comic;
-import com.example.fantaskbackend.model.Figure;
+import com.example.fantaskbackend.model.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,4 +36,10 @@ public class Storage {
 
   @OneToMany(mappedBy = "storage")
   private Set<Figure> figures = new HashSet<>();
+
+  @OneToMany(mappedBy = "storage")
+  private Set<Film> films = new HashSet<>();
+
+  @OneToMany(mappedBy = "storage")
+  private Set<Game> games = new HashSet<>();
 }

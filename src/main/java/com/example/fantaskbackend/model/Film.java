@@ -1,6 +1,9 @@
 package com.example.fantaskbackend.model;
 
+import com.example.fantaskbackend.model.fkmodels.FilmGenre;
 import com.example.fantaskbackend.model.fkmodels.FilmSeries;
+import com.example.fantaskbackend.model.fkmodels.FilmTypes;
+import com.example.fantaskbackend.model.fkmodels.Storage;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
@@ -23,18 +26,24 @@ public class Film {
     private String videoNumber;
 
     @ManyToOne
-    @Column(name = "fk_serie")
+    @JoinColumn(name = "fk_serie")
     private FilmSeries series;
     //private Long series;
 
-    @Column(name = "fk_genre", nullable = false)
-    private Long genre;
+    @ManyToOne()
+    @JoinColumn(name = "fk_genre", nullable = false)
+    private FilmGenre filmGenre;
+    //private Long genre;
 
-    @Column(name = "fk_type")
-    private Long type;
+    @ManyToOne()
+    @JoinColumn(name = "fk_type")
+    private FilmTypes filmType;
+    //private Long type;
 
-    @Column(name = "fk_lager")
-    private Long storage;
+    @ManyToOne()
+    @JoinColumn(name = "fk_lager")
+    private Storage storage;
+    //private Long storage;
 
     @Column(name = "nummer")
     private String number;

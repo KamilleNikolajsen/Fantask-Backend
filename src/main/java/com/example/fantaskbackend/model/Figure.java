@@ -8,7 +8,8 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "figurer")
+@Entity
+@Table(name = "figurer")
 @Getter
 @Setter
 @Indexed
@@ -23,22 +24,23 @@ public class Figure {
     private String figureNumber;
 
     @ManyToOne()
-    @Column(name = "fk_figur_kategori", nullable = false)
+    @JoinColumn(name = "fk_figur_kategori")
+    @Column(nullable = false)
     private FigureCategories figureCategory;
     //private Long category;
 
     @ManyToOne()
-    @Column(name = "fk_serie")
+    @JoinColumn(name = "fk_serie")
     private FigureSeries figureSeries;
     //private Long series;
 
     @ManyToOne()
-    @Column(name = "fk_lager")
+    @JoinColumn(name = "fk_lager")
     private Storage storage;
     //private Long storage;
 
     @ManyToOne()
-    @Column(name = "fk_figur_producent")
+    @JoinColumn(name = "fk_figur_producent")
     private GameManufacturer manufacturer;
     //private Long manufacturer;
 
