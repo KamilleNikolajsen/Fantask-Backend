@@ -24,7 +24,7 @@ public class Shipping {
   @Column(nullable = false, name = "adresse")
   private String shippingAddress;
 
-  @Column(name = "postnummer/by")
+  @Column(name = "postnummer_by")
   private String shippingCity;
 
   @Column(name = "land")
