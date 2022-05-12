@@ -5,7 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity(name="film_genre")
+@Entity
+@Table(name="film_genre")
 @Getter
 @Setter
 public class FilmGenre {

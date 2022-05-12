@@ -5,7 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity(name = "figur_serie")
+@Entity
+@Table(name = "figur_serie")
 @Getter
 @Setter
 public class FigureSeries {

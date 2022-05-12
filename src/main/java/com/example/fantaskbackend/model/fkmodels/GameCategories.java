@@ -5,7 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity(name = "spil_kategorier")
+@Entity
+@Table(name = "spil_kategorier")
 @Getter
 @Setter
 public class GameCategories {

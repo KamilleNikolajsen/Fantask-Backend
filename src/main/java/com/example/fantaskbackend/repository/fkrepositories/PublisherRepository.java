@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface PublisherRepository extends JpaRepository<Publisher, Long> {
 
-    @Query("select p from forlag p left join bog b on b.publisher = p.publisherId group by p")
+    @Query("select p from Publisher p left join Book b on b.publisher = p.publisherId group by p")
     List<Publisher> findAllBookPublishers();
 }

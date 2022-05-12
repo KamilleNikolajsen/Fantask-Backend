@@ -1,14 +1,17 @@
 package com.example.fantaskbackend.model.fkmodels;
 
 import com.example.fantaskbackend.model.Book;
+import com.example.fantaskbackend.model.Comic;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "forfattere")
+@Entity
+@Table(name = "forfattere")
 @Getter
 @Setter
 public class Authors {
@@ -19,6 +22,7 @@ public class Authors {
     private Long authorId;
 
     @Column(nullable = false, name = "forfatter_navn")
+    @FullTextField
     private String authorName;
 
     private String info;
@@ -27,4 +31,7 @@ public class Authors {
 
     @ManyToMany(mappedBy = "authors")
     private Set<Book> books = new HashSet<>();
+
+    @ManyToMany(mappedBy = "authors")
+    private Set<Comic> comics = new HashSet<>();
 }

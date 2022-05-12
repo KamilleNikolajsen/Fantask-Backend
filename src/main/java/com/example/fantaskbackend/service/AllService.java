@@ -19,7 +19,7 @@ public class AllService {
         List<Object> objects = Search.session(entityManager)
                 .search(Arrays.asList(Book.class, Comic.class, Film.class, Figure.class, Game.class))
                 .where(f -> f.match()
-                        .fields("authors.name", "fk_serie", "underserie", "nummer", "titel")
+                        .fields("authors.authorName", "fk_serie", "underserie", "nummer", "titel")
                         .matching(searchInput)
                         .fuzzy())
                 .fetchAllHits();

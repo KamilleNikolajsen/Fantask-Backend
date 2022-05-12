@@ -5,7 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity(name = "forlag")
+@Entity
+@Table(name = "forlag")
 @Getter
 @Setter
 public class Publisher {

@@ -5,7 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity(name = "lager")
+@Entity
+@Table(name = "lager")
 @Getter
 @Setter
 public class Storage {

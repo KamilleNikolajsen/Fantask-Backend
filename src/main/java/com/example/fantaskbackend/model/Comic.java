@@ -1,11 +1,16 @@
 package com.example.fantaskbackend.model;
 
+import com.example.fantaskbackend.model.fkmodels.Authors;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "tegneserier")
 @Getter
@@ -30,6 +35,15 @@ public class Comic {
     @Column(name = "fk_tegner_tegneserie")
     private Long artistComic;
 
+    @ManyToMany()
+    @IndexedEmbedded
+    @JoinTable(
+            name = "forfatter_tegneserier_bog",
+            joinColumns = {@JoinColumn(name = "fk_tegneserier")},
+            inverseJoinColumns = {@JoinColumn(name = "fk_forfatter")}
+    )
+    private Set<Authors> authors= new HashSet<>();
+
     @Column(name = "fk_forfatter_tegneserier_bog")
     private Long author;
 
@@ -51,6 +65,7 @@ public class Comic {
     @Column(name = "dansk_pris", nullable = false)
     private String danishPrice;
 
+    @KeywordField
     private String ISBN;
 
     @Column(name = "star_ID")

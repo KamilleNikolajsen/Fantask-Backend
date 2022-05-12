@@ -5,7 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity(name = "tegneserie_typer")
+@Entity
+@Table(name = "tegneserie_typer")
 @Getter
 @Setter
 public class ComicTypes {

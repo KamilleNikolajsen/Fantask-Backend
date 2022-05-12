@@ -1,9 +1,12 @@
 package com.example.fantaskbackend.model;
 
 import com.example.fantaskbackend.model.fkmodels.Authors;
+import com.example.fantaskbackend.model.fkmodels.BookSeries;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,7 +16,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Indexed
-@Entity(name = "bog")
+@Table(name = "bog")
+@Entity
 public class Book {
 
     @Id
@@ -21,13 +25,19 @@ public class Book {
     @Column(name = "id")
     private Long bookId;
 
+    @KeywordField
     @Column(nullable = false, unique = true)
     private String ISBN;
 
-    @Column(name = "fk_serie")
-    private Long series;
+    @ManyToOne()
+    @JoinColumn(name = "fk_serie")
+    private BookSeries bookSeries;
+
+    //@Column(name = "fk_serie")
+    //private Long series;
 
     @ManyToMany()
+    @IndexedEmbedded
     @JoinTable(
            name = "forfatter_tegneserier_bog",
             joinColumns = {@JoinColumn(name = "fk_bog")},
