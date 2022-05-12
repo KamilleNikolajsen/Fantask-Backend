@@ -3,7 +3,9 @@ package com.example.fantaskbackend.model;
 import com.example.fantaskbackend.model.fkmodels.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -30,6 +32,7 @@ public class Figure {
     //private Long category;
 
     @ManyToOne()
+    @IndexedEmbedded
     @JoinColumn(name = "fk_serie")
     private FigureSeries figureSeries;
     //private Long series;
@@ -48,6 +51,7 @@ public class Figure {
     private String manufacturerId;
 
     @Column(name = "titel")
+    @FullTextField
     private String title;
 
     @Column(name = "pris")

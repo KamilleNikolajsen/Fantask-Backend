@@ -3,6 +3,7 @@ package com.example.fantaskbackend.model;
 import com.example.fantaskbackend.model.fkmodels.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
@@ -25,6 +26,7 @@ public class Comic {
     private Long comicId;
 
     @ManyToOne()
+    @IndexedEmbedded
     @JoinColumn(name = "fk_serie")
     private ComicSeries comicSeries;
 
@@ -67,8 +69,9 @@ public class Comic {
     private Long author;
 
     @ManyToOne()
+    @IndexedEmbedded
     @JoinColumn(name = "fk_underserie")
-    private ComicSubseries comicSubserie;
+    private ComicSubseries comicSubseries;
 
     //@Column(name = "fk_underserie")
     //private Long subseries;
@@ -79,9 +82,11 @@ public class Comic {
     //private Long storage;
 
     @Column(name = "nummer")
+    @FullTextField
     private String number;
 
     @Column(name = "titel")
+    @FullTextField
     private String title;
 
     @Column(name = "original_pris")

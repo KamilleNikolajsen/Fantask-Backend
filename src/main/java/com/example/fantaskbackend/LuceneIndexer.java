@@ -26,10 +26,10 @@ public class LuceneIndexer implements ApplicationRunner {
         SearchSession searchSession = Search.session(entityManager);
 
         MassIndexer indexer = searchSession.massIndexer(Book.class, Comic.class, Film.class, Figure.class, Game.class)
-                .idFetchSize(2000)
-                .batchSizeToLoadObjects(100)
+                .idFetchSize(3000)
+                .batchSizeToLoadObjects(200)
                 .threadsToLoadObjects(7);
 
-        indexer.startAndWait();
+        //indexer.startAndWait();
     }
 }

@@ -24,7 +24,7 @@ public class FilmSeries {
   @Column(nullable = false, name = "serie_navn")
   private String filmSeriesName;
 
-  @OneToMany(mappedBy = "series")
+  @OneToMany(mappedBy = "filmSeries")
   private Set<Film> films = new HashSet<>();
 
 }

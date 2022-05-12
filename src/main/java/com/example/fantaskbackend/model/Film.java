@@ -6,7 +6,9 @@ import com.example.fantaskbackend.model.fkmodels.FilmTypes;
 import com.example.fantaskbackend.model.fkmodels.Storage;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -26,8 +28,9 @@ public class Film {
     private String videoNumber;
 
     @ManyToOne
+    @IndexedEmbedded
     @JoinColumn(name = "fk_serie")
-    private FilmSeries series;
+    private FilmSeries filmSeries;
     //private Long series;
 
     @ManyToOne()
@@ -46,9 +49,11 @@ public class Film {
     //private Long storage;
 
     @Column(name = "nummer")
+    @FullTextField
     private String number;
 
     @Column(name = "titel")
+    @FullTextField
     private String title;
 
     @Column(name = "original_pris")

@@ -24,6 +24,6 @@ public class ComicSubseries {
   @Column(nullable = false, name = "underserie_navn")
   private String comicSubseriesName;
 
-  @OneToMany(mappedBy = "comicSubserie")
+  @OneToMany(mappedBy = "comicSubseries")
   private Set<Comic> comics = new HashSet<>();
 }

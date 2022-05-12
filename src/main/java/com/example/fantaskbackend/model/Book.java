@@ -3,6 +3,7 @@ package com.example.fantaskbackend.model;
 import com.example.fantaskbackend.model.fkmodels.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
@@ -29,6 +30,7 @@ public class Book {
     private String ISBN;
 
     @ManyToOne()
+    @IndexedEmbedded
     @JoinColumn(name = "fk_serie")
     private BookSeries bookSeries;
 
@@ -73,9 +75,11 @@ public class Book {
     //private Long storage;
 
     @Column(name = "nummer")
+    @FullTextField
     private String number;
 
     @Column(name = "titel")
+    @FullTextField
     private String title;
 
     @Column(name = "original_pris")
