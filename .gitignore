@@ -48,3 +48,6 @@ build/
 *.fnm
 *.lock
 segments_*
+*.nvd
+*.nvm
+*.pos
