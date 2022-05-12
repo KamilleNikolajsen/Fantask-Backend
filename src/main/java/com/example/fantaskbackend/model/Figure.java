@@ -24,8 +24,8 @@ public class Figure {
     private String figureNumber;
 
     @ManyToOne()
-    @JoinColumn(name = "fk_figur_kategori")
-    @Column(nullable = false)
+    @JoinColumn(nullable = false, name = "fk_figur_kategori")
+    //@Column(nullable = false)
     private FigureCategories figureCategory;
     //private Long category;
 
