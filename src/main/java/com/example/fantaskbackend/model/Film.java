@@ -1,5 +1,6 @@
 package com.example.fantaskbackend.model;
 
+import com.example.fantaskbackend.model.fkmodels.FilmSeries;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
@@ -21,8 +22,10 @@ public class Film {
     @Column(name = "video_nr", nullable = false)
     private String videoNumber;
 
+    @ManyToOne
     @Column(name = "fk_serie")
-    private Long series;
+    private FilmSeries series;
+    //private Long series;
 
     @Column(name = "fk_genre", nullable = false)
     private Long genre;

@@ -1,9 +1,12 @@
 package com.example.fantaskbackend.model.fkmodels;
 
+import com.example.fantaskbackend.model.Figure;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "spil_producent")
@@ -51,4 +54,7 @@ public class GameManufacturer {
 
   @Column(name = "fk_shipping")
   private Long gameManufacturerFkShipping;
+
+  @OneToMany(mappedBy = "manufacturer")
+  private Set<Figure> figures = new HashSet<>();
 }

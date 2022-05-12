@@ -30,11 +30,15 @@ public class Comic {
    //@Column(name = "fk_serie")
     //private Long series;
 
+    @ManyToOne()
     @Column(name = "fk_forlag")
-    private Long publisher;
+    private Publisher publisher;
+    //private Long publisher;
 
+    @ManyToOne()
     @Column(name = "fk_type")
-    private Long type;
+    private ComicTypes comicType;
+    //private Long type;
 
     @ManyToMany()
     @IndexedEmbedded
@@ -65,11 +69,13 @@ public class Comic {
     @JoinColumn(name = "fk_underserie")
     private ComicSubseries comicSubserie;
 
-    @Column(name = "fk_underserie")
-    private Long subseries;
+    //@Column(name = "fk_underserie")
+    //private Long subseries;
 
+    @ManyToOne()
     @Column(name = "fk_lager")
-    private Long storage;
+    private Storage storage;
+    //private Long storage;
 
     @Column(name = "nummer")
     private String number;

@@ -1,9 +1,13 @@
 package com.example.fantaskbackend.model.fkmodels;
 
+import com.example.fantaskbackend.model.Book;
+import com.example.fantaskbackend.model.Comic;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "forlag")
@@ -48,4 +52,11 @@ public class Publisher {
 
   @Column(name = "konto")
   private String publisherAccount;
+
+  @OneToMany(mappedBy = "publisher")
+  private Set<Book> books = new HashSet<>();
+
+  @OneToMany(mappedBy = "publisher")
+  private Set<Comic> comics = new HashSet<>();
+
 }

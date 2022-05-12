@@ -1,7 +1,6 @@
 package com.example.fantaskbackend.model;
 
-import com.example.fantaskbackend.model.fkmodels.Authors;
-import com.example.fantaskbackend.model.fkmodels.BookSeries;
+import com.example.fantaskbackend.model.fkmodels.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
@@ -49,17 +48,29 @@ public class Book {
     @Column(name = "fk_forfatter")
     private Long author;
 
-    @Column(name = "fk_forlag")
-    private Long publisher;
+    @ManyToOne()
+    @JoinColumn(name = "fk_forlag")
+    private Publisher publisher;
 
-    @Column(name = "fk_kategori")
-    private Long category;
+    //@Column(name = "fk_forlag")
+    //private Long publisher;
 
+    @ManyToOne()
+    @JoinColumn(name = "fk_kategori")
+    private BookCategories bookCategory;
+
+    //@Column(name = "fk_kategori")
+    //private Long category;
+
+    @ManyToOne()
     @Column(name = "fk_genre")
-    private Long genre;
+    private BookGenre bookGenre;
+    //private Long genre;
 
+    @ManyToOne
     @Column(name = "fk_lager")
-    private Long storage;
+    private Storage storage;
+    //private Long storage;
 
     @Column(name = "nummer")
     private String number;
