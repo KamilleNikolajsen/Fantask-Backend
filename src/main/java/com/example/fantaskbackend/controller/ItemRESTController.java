@@ -28,10 +28,10 @@ public class ItemRESTController {
     @Autowired
     AllService allService;
 
-    @PostMapping("/category")
+    @PostMapping("/category/all")
     public List<Object> searchAllCategories(@RequestBody Object input) {
 
-        return null;
+        List<Object> items = allService.searchCrossAll(input);
+        return items;
     }
-
 }
