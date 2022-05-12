@@ -1,5 +1,8 @@
 package com.example.fantaskbackend.model;
 
+import com.example.fantaskbackend.model.fkmodels.BookSeries;
+import com.example.fantaskbackend.model.fkmodels.GameSeries;
+import com.example.fantaskbackend.model.fkmodels.GameSubseries;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
@@ -27,8 +30,17 @@ public class Game {
     @Column(name = "producent_id")
     private String manufacturerId;
 
-    @Column(name = "fk_serie")
+    @ManyToOne()
+    @JoinColumn(name = "fk_serie")
+    private GameSeries gameSeries;
+
+    /*@Column(name = "fk_serie")
     private Long series;
+     */
+
+    @ManyToOne()
+    @JoinColumn(name = "fk_underserie")
+    private GameSubseries gameSubseries;
 
     @Column(name = "fk_underserie")
     private Long subseries;
