@@ -5,14 +5,12 @@ import com.example.fantaskbackend.model.fkmodels.BookGenre;
 import com.example.fantaskbackend.model.fkmodels.Publisher;
 import com.example.fantaskbackend.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class BookRESTController {
 
     @Autowired
