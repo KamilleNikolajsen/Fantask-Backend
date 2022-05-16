@@ -1,8 +1,10 @@
 package com.example.fantaskbackend.service;
 
+import com.example.fantaskbackend.CrossSearchInput;
 import com.example.fantaskbackend.CrossSearchItem;
 import com.example.fantaskbackend.model.*;
 import com.example.fantaskbackend.model.fkmodels.Authors;
+import org.hibernate.search.engine.search.predicate.dsl.BooleanPredicateClausesStep;
 import org.hibernate.search.mapper.orm.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,18 +20,59 @@ public class AllService {
     @Autowired
     EntityManager entityManager;
 
-    public List<CrossSearchItem> searchCrossAll(Object searchInput) {
+    public List<CrossSearchItem> searchCrossAll(CrossSearchInput searchInput) {
         List<Object> objects = Search.session(entityManager)
                 .search(Arrays.asList(Book.class, Comic.class, Film.class, Figure.class, Game.class))
-                .where(f -> f.match()
-                        .fields("authors.authorName", "bookSeries.bookSeriesName", "comicSeries.comicSeriesName", "comicSubseries.comicSubseriesName", "figureSeries.figureSeriesName", "filmSeries.filmSeriesName", "gameSeries.gameSeriesName", "gameSubseries.gameSubseriesName", "number", "title")
-                        .matching(searchInput)
-                        .fuzzy())
+                .where(f -> {
+                            BooleanPredicateClausesStep<?> query = f.bool()
+                                    .must(i -> i.match()
+                                            .fields("authors.authorName", "bookSeries.bookSeriesName", "comicSeries.comicSeriesName", "comicSubseries.comicSubseriesName", "figureSeries.figureSeriesName", "filmSeries.filmSeriesName", "gameSeries.gameSeriesName", "gameSubseries.gameSubseriesName", "number", "title")
+                                            .matching(searchInput.getFtsInput())
+                                            .fuzzy()
+                                    )
+                                    /*.filter(box -> box.match()
+                                    .field("box")
+                                    .matching(searchInput.isBox())
+                            )
+                            */;
+                            if (searchInput.isUnavailable()) {
+                                query.filter(unavailable -> unavailable.match()
+                                        .field("unavailable")
+                                        .matching(false));
+                            }
+
+                            if (searchInput.isOutOfStock()) {
+                                query.filter(outOfstock -> outOfstock.match()
+                                        .field("outOfStock")
+                                        .matching(false));
+                            }
+
+                            if (searchInput.isOnSale()) {
+                                query.filter(onSale -> onSale.match()
+                                        .field("onSale")
+                                        .matching(true)
+                                );
+                            }
+
+                            if (searchInput.isExcludeComing()) {
+                                query.filter(c -> c.match()
+                                        .field("coming")
+                                        .matching(false));
+                            }
+                            if (searchInput.isShowComing()) {
+                                query.filter(c -> c.match()
+                                        .field("coming")
+                                        .matching(true));
+                            }
+
+                            return query;
+                        }
+                )
                 .fetchHits(50);
 
         List<CrossSearchItem> items = new ArrayList<>();
 
-        for (Object object: objects) {
+        for (Object object : objects) {
             if (object instanceof Book) {
                 Book book = (Book) object;
 
@@ -87,9 +130,9 @@ public class AllService {
                 items.add(crossSearchItem);
 
             } else if (object instanceof Film) {
-                Film  film = (Film) object;
+                Film film = (Film) object;
 
-                CrossSearchItem crossSearchItem =  new CrossSearchItem(
+                CrossSearchItem crossSearchItem = new CrossSearchItem(
                         film.getFilmId(),
                         null,
                         film.getFilmSeries() == null ? null : film.getFilmSeries().getFilmSeriesName(),

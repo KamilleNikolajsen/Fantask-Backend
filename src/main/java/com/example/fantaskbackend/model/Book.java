@@ -3,10 +3,7 @@ package com.example.fantaskbackend.model;
 import com.example.fantaskbackend.model.fkmodels.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -29,7 +26,7 @@ public class Book {
     @Column(nullable = false, unique = true)
     private String ISBN;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinColumn(name = "fk_serie")
     private BookSeries bookSeries;
@@ -37,7 +34,7 @@ public class Book {
     //@Column(name = "fk_serie")
     //private Long series;
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinTable(
            name = "forfatter_tegneserier_bog",
@@ -103,9 +100,11 @@ public class Book {
     @Column(nullable = false, name = "dato")
     private Date date;
 
+    @GenericField
     @Column(nullable = false, name = "udgået")
     private boolean unavailable;
 
+    @GenericField
     @Column(nullable = false, name = "kommende")
     private boolean coming;
 
@@ -115,12 +114,14 @@ public class Book {
     @Column(nullable = false, name = "restordre")
     private boolean backorder;
 
+    @GenericField
     @Column(nullable = false, name = "udsolgt")
     private boolean outOfStock;
 
     @Column(nullable = false, name = "skjul")
     private boolean hide;
 
+    @GenericField
     @Column(nullable = false, name = "tilbud")
     private boolean onSale;
 

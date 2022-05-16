@@ -7,6 +7,7 @@ import com.example.fantaskbackend.model.fkmodels.Storage;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 
@@ -27,7 +28,7 @@ public class Film {
     @Column(name = "video_nr", nullable = false)
     private String videoNumber;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinColumn(name = "fk_serie")
     private FilmSeries filmSeries;
@@ -77,21 +78,25 @@ public class Film {
     @Column(name = "restordre", nullable = false)
     private boolean backorder;
 
+    @GenericField
     @Column(name = "kommende", nullable = false)
     private boolean coming;
 
+    @GenericField
     @Column(name = "udgået", nullable = false)
     private boolean unavailable;
 
     @Column(nullable = false)
     private boolean widescreen;
 
+    @GenericField
     @Column(name = "udsolgt", nullable = false)
     private boolean outOfStock;
 
     @Column(name = "skjul" , nullable = false)
     private boolean hide;
 
+    @GenericField
     @Column(name = "tilbud", nullable = false)
     private boolean onSale;
 }

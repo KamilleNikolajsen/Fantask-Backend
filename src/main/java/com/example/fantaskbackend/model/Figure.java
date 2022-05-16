@@ -4,6 +4,7 @@ import com.example.fantaskbackend.model.fkmodels.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 
@@ -31,7 +32,7 @@ public class Figure {
     private FigureCategories figureCategory;
     //private Long category;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinColumn(name = "fk_serie")
     private FigureSeries figureSeries;
@@ -70,9 +71,11 @@ public class Figure {
     private Date date;
 
     @Column(name = "udgået", nullable = false)
+    @GenericField
     private boolean unavailable;
 
     @Column(nullable = false)
+    @GenericField
     private boolean box;
 
     @Column(name = "abonnement", nullable = false)
@@ -82,14 +85,17 @@ public class Figure {
     private boolean backorder;
 
     @Column(name = "kommende", nullable = false)
+    @GenericField
     private boolean coming;
 
     @Column(name = "udsolgt", nullable = false)
+    @GenericField
     private boolean outOfStock;
 
     @Column(name = "skjul", nullable = false)
     private boolean hide;
 
     @Column(name = "tilbud", nullable = false)
+    @GenericField
     private boolean onSale;
 }

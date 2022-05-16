@@ -4,6 +4,7 @@ import com.example.fantaskbackend.model.fkmodels.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 
@@ -31,7 +32,7 @@ public class Game {
     @Column(name = "producent_id")
     private String manufacturerId;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinColumn(name = "fk_serie")
     private GameSeries gameSeries;
@@ -40,7 +41,7 @@ public class Game {
     private Long series;
      */
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinColumn(name = "fk_underserie")
     private GameSubseries gameSubseries;
@@ -102,6 +103,7 @@ public class Game {
     @Column(name = "dato")
     private Date date;
 
+    @GenericField
     @Column(name = "udgået", nullable = false)
     private boolean unavailable;
 
@@ -111,18 +113,22 @@ public class Game {
     @Column(name = "restordre", nullable = false)
     private boolean backorder;
 
+    @GenericField
     @Column(name = "kommende", nullable = false)
     private boolean coming;
 
+    @GenericField
     @Column(nullable = false)
     private boolean box;
 
+    @GenericField
     @Column(name = "udsolgt", nullable = false)
     private boolean outOfStock;
 
     @Column(name = "skjul", nullable = false)
     private boolean hide;
 
+    @GenericField
     @Column(name = "tilbud", nullable = false)
     private boolean onSale;
 }

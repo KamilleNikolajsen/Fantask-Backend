@@ -3,10 +3,7 @@ package com.example.fantaskbackend.model;
 import com.example.fantaskbackend.model.fkmodels.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -25,7 +22,7 @@ public class Comic {
     @Column(name = "id")
     private Long comicId;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinColumn(name = "fk_serie")
     private ComicSeries comicSeries;
@@ -56,7 +53,7 @@ public class Comic {
     @Column(name = "fk_tegner_tegneserie")
     private Long artistComic;
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinTable(
             name = "forfatter_tegneserier_bog",
@@ -68,7 +65,7 @@ public class Comic {
     @Column(name = "fk_forfatter_tegneserier_bog")
     private Long author;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinColumn(name = "fk_underserie")
     private ComicSubseries comicSubseries;
@@ -107,9 +104,11 @@ public class Comic {
     @Column(name = "beskrivelse")
     private String description;
 
+    @GenericField
     @Column(name = "kommende", nullable = false)
     private boolean coming;
 
+    @GenericField
     @Column(name = "udgået", nullable = false)
     private boolean unavailable;
 
@@ -119,14 +118,14 @@ public class Comic {
     @Column(name = "restordre", nullable = false)
     private boolean backorder;
 
+    @GenericField
     @Column(name = "udsolgt", nullable = false)
     private boolean outOfStock;
 
     @Column(name = "skjul", nullable = false)
     private boolean hide;
 
+    @GenericField
     @Column(name = "tilbud", nullable = false)
     private boolean onSale;
-
-
 }

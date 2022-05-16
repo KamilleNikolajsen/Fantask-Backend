@@ -1,5 +1,6 @@
 package com.example.fantaskbackend.controller;
 
+import com.example.fantaskbackend.CrossSearchInput;
 import com.example.fantaskbackend.CrossSearchItem;
 import com.example.fantaskbackend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,9 @@ public class ItemRESTController {
     AllService allService;
 
     @PostMapping("/category/all")
-    public List<CrossSearchItem> searchAllCategories(@RequestBody Object input) {
+    public List<CrossSearchItem> searchAllCategories(@RequestBody CrossSearchInput input) {
 
-        List<CrossSearchItem> items = allService.searchCrossAll(input.toString().split("=")[1]);
+        List<CrossSearchItem> items = allService.searchCrossAll(input);
         return items;
     }
 }
