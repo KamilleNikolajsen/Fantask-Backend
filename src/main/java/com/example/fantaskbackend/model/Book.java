@@ -40,6 +40,7 @@ public class Book {
     )
     private Set<Authors> authors = new HashSet<>();
 
+
     @ManyToOne()
     @JoinColumn(name = "fk_forlag")
     private Publisher publisher;
@@ -110,5 +111,4 @@ public class Book {
     @GenericField
     @Column(nullable = false, name = "tilbud")
     private boolean onSale;
-
 }
