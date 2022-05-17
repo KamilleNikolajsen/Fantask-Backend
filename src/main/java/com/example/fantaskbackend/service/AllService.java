@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,14 +39,17 @@ public class AllService {
                                 );
                             }
 
-                            /*if (searchInput.getDate() != null) {
-                                query.filter(date -> date.match()
+                            //Drop down med tidsmodificering
+
+                            if (!searchInput.getDate().equals("null")) {
+                                int time = Integer.parseInt(searchInput.getDate());
+                                query.filter(date -> date.range()
                                         .field("date")
-                                        .matching())
+                                                .between(LocalDate.now().minusDays(time), LocalDate.now())
+                                        );
                             }
 
-                             */
-
+                            // Booleans checkboxes - eklkludering og vis alle
                             if (searchInput.isUnavailable()) {
                                 query.filter(unavailable -> unavailable.match()
                                         .field("unavailable")
