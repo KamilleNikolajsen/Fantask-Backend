@@ -51,3 +51,9 @@ segments_*
 *.nvd
 *.nvm
 *.pos
+
+Book/
+Comic/
+Figure/
+Film/
+Game/
