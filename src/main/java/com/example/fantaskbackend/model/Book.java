@@ -31,9 +31,6 @@ public class Book {
     @JoinColumn(name = "fk_serie")
     private BookSeries bookSeries;
 
-    //@Column(name = "fk_serie")
-    //private Long series;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinTable(
@@ -43,33 +40,21 @@ public class Book {
     )
     private Set<Authors> authors= new HashSet<>();
 
-// fjern når vi er sirke på det hele spiller
-    @Column(name = "fk_forfatter")
-    private Long author;
-
     @ManyToOne()
     @JoinColumn(name = "fk_forlag")
     private Publisher publisher;
-
-    //@Column(name = "fk_forlag")
-    //private Long publisher;
 
     @ManyToOne()
     @JoinColumn(name = "fk_kategori")
     private BookCategories bookCategory;
 
-    //@Column(name = "fk_kategori")
-    //private Long category;
-
     @ManyToOne()
     @JoinColumn(name = "fk_genre")
     private BookGenre bookGenre;
-    //private Long genre;
 
     @ManyToOne
     @JoinColumn(name = "fk_lager")
     private Storage storage;
-    //private Long storage;
 
     @Column(name = "nummer")
     @FullTextField
@@ -124,5 +109,4 @@ public class Book {
     @GenericField
     @Column(nullable = false, name = "tilbud")
     private boolean onSale;
-
 }
