@@ -17,6 +17,7 @@ class ItemRESTControllerTest {
 
     //https://www.baeldung.com/integration-testing-a-rest-api
 
+    /*
     @Test
     public void error404() throws IOException, ClientProtocolException {
 
@@ -31,6 +32,8 @@ class ItemRESTControllerTest {
                 httpResponse.getStatusLine().getStatusCode(),
                 equalTo(HttpStatus.SC_NOT_FOUND));
     }
+
+     */
 
 
 }
