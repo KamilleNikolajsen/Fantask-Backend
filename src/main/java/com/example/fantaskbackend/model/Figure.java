@@ -28,25 +28,20 @@ public class Figure {
 
     @ManyToOne()
     @JoinColumn(nullable = false, name = "fk_figur_kategori")
-    //@Column(nullable = false)
     private FigureCategories figureCategory;
-    //private Long category;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinColumn(name = "fk_serie")
     private FigureSeries figureSeries;
-    //private Long series;
 
     @ManyToOne()
     @JoinColumn(name = "fk_lager")
     private Storage storage;
-    //private Long storage;
 
     @ManyToOne()
     @JoinColumn(name = "fk_figur_producent")
     private GameManufacturer manufacturer;
-    //private Long manufacturer;
 
     @Column(name = "producent_id", nullable = false)
     private String manufacturerId;
@@ -67,6 +62,7 @@ public class Figure {
     @Column(name = "antal")
     private Integer amount;
 
+    @GenericField
     @Column(name = "dato", nullable = false)
     private Date date;
 

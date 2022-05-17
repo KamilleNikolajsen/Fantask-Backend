@@ -35,7 +35,7 @@ public class Comic {
     @JoinColumn(name = "fk_type")
     private ComicTypes comicType;
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinTable(
             name = "tegner_tegneserier",
@@ -82,6 +82,7 @@ public class Comic {
     @Column(name = "star_ID")
     private String starId;
 
+    @GenericField
     @Column(name = "dato")
     private Date date;
 

@@ -32,22 +32,18 @@ public class Film {
     @IndexedEmbedded
     @JoinColumn(name = "fk_serie")
     private FilmSeries filmSeries;
-    //private Long series;
 
     @ManyToOne()
     @JoinColumn(name = "fk_genre", nullable = false)
     private FilmGenre filmGenre;
-    //private Long genre;
 
     @ManyToOne()
     @JoinColumn(name = "fk_type")
     private FilmTypes filmType;
-    //private Long type;
 
     @ManyToOne()
     @JoinColumn(name = "fk_lager")
     private Storage storage;
-    //private Long storage;
 
     @Column(name = "nummer")
     @FullTextField
@@ -66,6 +62,7 @@ public class Film {
     @Column(name = "minutter")
     private Integer minutes;
 
+    @GenericField
     @Column(name = "dato", nullable = false)
     private Date date;
 

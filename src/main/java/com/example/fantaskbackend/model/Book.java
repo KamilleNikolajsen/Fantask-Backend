@@ -34,11 +34,12 @@ public class Book {
     @ManyToMany(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinTable(
-           name = "forfatter_tegneserier_bog",
+            name = "forfatter_tegneserier_bog",
             joinColumns = {@JoinColumn(name = "fk_bog")},
             inverseJoinColumns = {@JoinColumn(name = "fk_forfatter")}
     )
-    private Set<Authors> authors= new HashSet<>();
+    private Set<Authors> authors = new HashSet<>();
+
 
     @ManyToOne()
     @JoinColumn(name = "fk_forlag")
@@ -83,6 +84,7 @@ public class Book {
     private Integer pages;
 
     @Column(nullable = false, name = "dato")
+    @GenericField
     private Date date;
 
     @GenericField

@@ -37,43 +37,30 @@ public class Game {
     @JoinColumn(name = "fk_serie")
     private GameSeries gameSeries;
 
-    /*@Column(name = "fk_serie")
-    private Long series;
-     */
-
     @ManyToOne(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinColumn(name = "fk_underserie")
     private GameSubseries gameSubseries;
 
-    /*@Column(name = "fk_underserie")
-    private Long subseries;
-     */
-
     @ManyToOne()
     @JoinColumn(name = "fk_kategori")
     private GameCategories gameCategory;
-    //private Long category;
 
     @ManyToOne()
     @JoinColumn(name = "fk_type")
     private GameTypes gameType;
-    //private Long type;
 
     @ManyToOne()
     @JoinColumn(name = "fk_kateogori_type")
     private GameCategoryTypes gameCategoryType;
-    //private Long categoryType;
 
     @ManyToOne()
     @JoinColumn(name = "fk_spil_producent")
     private GameManufacturer manufacturer;
-    //private Long manufacturer;
 
     @ManyToOne()
     @JoinColumn(name = "fk_lager")
     private Storage storage;
-    //private Long storage;
 
     @Column(name = "titel")
     @FullTextField
@@ -101,6 +88,7 @@ public class Game {
     private String description;
 
     @Column(name = "dato")
+    @GenericField
     private Date date;
 
     @GenericField

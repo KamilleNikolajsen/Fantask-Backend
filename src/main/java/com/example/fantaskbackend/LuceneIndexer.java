@@ -25,9 +25,9 @@ public class LuceneIndexer implements ApplicationRunner {
         //https://docs.jboss.org/hibernate/search/6.1/reference/en-US/html_single/#getting-started-initialization-indexing
         SearchSession searchSession = Search.session(entityManager);
 
-        MassIndexer indexer = searchSession.massIndexer(Book.class, Game.class, Figure.class, Film.class)
-                .idFetchSize(10000)
-                .batchSizeToLoadObjects(1000)
+        MassIndexer indexer = searchSession.massIndexer(Game.class, Figure.class, Film.class, Book.class, Comic.class)
+                .idFetchSize(Integer.MIN_VALUE)
+                .batchSizeToLoadObjects(50)
                 .threadsToLoadObjects(7);
 
         indexer.startAndWait();

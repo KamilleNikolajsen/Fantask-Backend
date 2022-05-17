@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,22 +30,38 @@ public class AllService {
                                             .fields("authors.authorName", "bookSeries.bookSeriesName", "comicSeries.comicSeriesName", "comicSubseries.comicSubseriesName", "figureSeries.figureSeriesName", "filmSeries.filmSeriesName", "gameSeries.gameSeriesName", "gameSubseries.gameSubseriesName", "number", "title")
                                             .matching(searchInput.getFtsInput())
                                             .fuzzy()
-                                    )
-                                    /*.filter(box -> box.match()
-                                    .field("box")
-                                    .matching(searchInput.isBox())
-                            )
-                            */;
+                                    );
+
+                            if (searchInput.isBox()) {
+                                query.filter(box -> box.match()
+                                        .field("box")
+                                        .matching(true)
+                                );
+                            }
+
+                            //Drop down med tidsmodificering
+
+                            if (!searchInput.getDate().equals("null")) {
+                                int time = Integer.parseInt(searchInput.getDate());
+                                query.filter(date -> date.range()
+                                        .field("date")
+                                                .between(LocalDate.now().minusDays(time), LocalDate.now())
+                                        );
+                            }
+
+                            // Booleans checkboxes - eklkludering og vis alle
                             if (searchInput.isUnavailable()) {
                                 query.filter(unavailable -> unavailable.match()
                                         .field("unavailable")
-                                        .matching(false));
+                                        .matching(false)
+                                );
                             }
 
                             if (searchInput.isOutOfStock()) {
                                 query.filter(outOfstock -> outOfstock.match()
                                         .field("outOfStock")
-                                        .matching(false));
+                                        .matching(false)
+                                );
                             }
 
                             if (searchInput.isOnSale()) {
@@ -57,12 +74,14 @@ public class AllService {
                             if (searchInput.isExcludeComing()) {
                                 query.filter(c -> c.match()
                                         .field("coming")
-                                        .matching(false));
+                                        .matching(false)
+                                );
                             }
                             if (searchInput.isShowComing()) {
                                 query.filter(c -> c.match()
                                         .field("coming")
-                                        .matching(true));
+                                        .matching(true)
+                                );
                             }
 
                             return query;
