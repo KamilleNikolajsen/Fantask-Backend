@@ -51,3 +51,6 @@ segments_*
 *.nvd
 *.nvm
 *.pos
+*.kdd
+*.kdm
+*.kdi

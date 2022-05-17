@@ -2,6 +2,8 @@ package com.example.fantaskbackend;
 
 import lombok.Getter;
 
+import java.util.Date;
+
 @Getter
 public class CrossSearchInput {
 
@@ -18,4 +20,6 @@ public class CrossSearchInput {
     private boolean onSale;
 
     private boolean box;
+
+    private Date date;
 }

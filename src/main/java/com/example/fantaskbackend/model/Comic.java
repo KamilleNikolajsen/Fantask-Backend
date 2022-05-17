@@ -27,20 +27,15 @@ public class Comic {
     @JoinColumn(name = "fk_serie")
     private ComicSeries comicSeries;
 
-   //@Column(name = "fk_serie")
-    //private Long series;
-
     @ManyToOne()
     @JoinColumn(name = "fk_forlag")
     private Publisher publisher;
-    //private Long publisher;
 
     @ManyToOne()
     @JoinColumn(name = "fk_type")
     private ComicTypes comicType;
-    //private Long type;
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinTable(
             name = "tegner_tegneserier",
@@ -48,10 +43,6 @@ public class Comic {
             inverseJoinColumns = {@JoinColumn(name = "fk_tegner")}
     )
     private Set<Artist> artists= new HashSet<>();
-
-    // Slettes når alt spiller
-    @Column(name = "fk_tegner_tegneserie")
-    private Long artistComic;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @IndexedEmbedded
@@ -62,21 +53,14 @@ public class Comic {
     )
     private Set<Authors> authors= new HashSet<>();
 
-    @Column(name = "fk_forfatter_tegneserier_bog")
-    private Long author;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @IndexedEmbedded
     @JoinColumn(name = "fk_underserie")
     private ComicSubseries comicSubseries;
 
-    //@Column(name = "fk_underserie")
-    //private Long subseries;
-
     @ManyToOne()
     @JoinColumn(name = "fk_lager")
     private Storage storage;
-    //private Long storage;
 
     @Column(name = "nummer")
     @FullTextField
@@ -98,6 +82,7 @@ public class Comic {
     @Column(name = "star_ID")
     private String starId;
 
+    @GenericField
     @Column(name = "dato")
     private Date date;
 

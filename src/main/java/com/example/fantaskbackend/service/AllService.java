@@ -29,22 +29,35 @@ public class AllService {
                                             .fields("authors.authorName", "bookSeries.bookSeriesName", "comicSeries.comicSeriesName", "comicSubseries.comicSubseriesName", "figureSeries.figureSeriesName", "filmSeries.filmSeriesName", "gameSeries.gameSeriesName", "gameSubseries.gameSubseriesName", "number", "title")
                                             .matching(searchInput.getFtsInput())
                                             .fuzzy()
-                                    )
-                                    /*.filter(box -> box.match()
-                                    .field("box")
-                                    .matching(searchInput.isBox())
-                            )
-                            */;
+                                    );
+
+                            if (searchInput.isBox()) {
+                                query.filter(box -> box.match()
+                                        .field("box")
+                                        .matching(true)
+                                );
+                            }
+
+                            /*if (searchInput.getDate() != null) {
+                                query.filter(date -> date.match()
+                                        .field("date")
+                                        .matching())
+                            }
+
+                             */
+
                             if (searchInput.isUnavailable()) {
                                 query.filter(unavailable -> unavailable.match()
                                         .field("unavailable")
-                                        .matching(false));
+                                        .matching(false)
+                                );
                             }
 
                             if (searchInput.isOutOfStock()) {
                                 query.filter(outOfstock -> outOfstock.match()
                                         .field("outOfStock")
-                                        .matching(false));
+                                        .matching(false)
+                                );
                             }
 
                             if (searchInput.isOnSale()) {
@@ -57,12 +70,14 @@ public class AllService {
                             if (searchInput.isExcludeComing()) {
                                 query.filter(c -> c.match()
                                         .field("coming")
-                                        .matching(false));
+                                        .matching(false)
+                                );
                             }
                             if (searchInput.isShowComing()) {
                                 query.filter(c -> c.match()
                                         .field("coming")
-                                        .matching(true));
+                                        .matching(true)
+                                );
                             }
 
                             return query;
