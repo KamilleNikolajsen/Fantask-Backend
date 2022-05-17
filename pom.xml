@@ -56,6 +56,12 @@
             <artifactId>hibernate-search-backend-lucene</artifactId>
             <version>6.1.5.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
