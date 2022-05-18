@@ -28,6 +28,9 @@ class BookRESTControllerTest {
   @Test
   public void readBook(){
     Book book = new Book();
+
+    // Her mille String s = "12/12/2022";
+    //        Date date = new SimpleDateFormat("dd/MM/yyyy").parse(s);
     Date date = new Date(2022,12,12);
 
     book.setTitle("Test Titel");
