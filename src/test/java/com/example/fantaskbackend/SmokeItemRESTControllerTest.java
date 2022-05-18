@@ -9,6 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 public class SmokeItemRESTControllerTest {
+    //https://spring.io/guides/gs/testing-web/
 
     @Autowired
     private ItemRESTController itemRESTController;

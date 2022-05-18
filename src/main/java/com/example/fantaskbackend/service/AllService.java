@@ -11,8 +11,10 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -32,21 +34,15 @@ public class AllService {
                                             .fuzzy()
                                     );
 
-                            if (searchInput.isBox()) {
-                                query.filter(box -> box.match()
-                                        .field("box")
-                                        .matching(true)
-                                );
-                            }
-
                             //Drop down med tidsmodificering
 
                             if (!searchInput.getDate().equals("null")) {
                                 int time = Integer.parseInt(searchInput.getDate());
+
                                 query.filter(date -> date.range()
                                         .field("date")
-                                                .between(LocalDate.now().minusDays(time), LocalDate.now())
-                                        );
+                                        .between(convertToDate(LocalDate.now().minusDays(time)), convertToDate(LocalDate.now()))
+                                );
                             }
 
                             // Booleans checkboxes - eklkludering og vis alle
@@ -80,6 +76,13 @@ public class AllService {
                             if (searchInput.isShowComing()) {
                                 query.filter(c -> c.match()
                                         .field("coming")
+                                        .matching(true)
+                                );
+                            }
+
+                            if (searchInput.isBox()) {
+                                query.filter(box -> box.match()
+                                        .field("box")
                                         .matching(true)
                                 );
                             }
@@ -166,5 +169,9 @@ public class AllService {
         }
 
         return items;
+    }
+
+    public Date convertToDate(LocalDate localDate) {
+        return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
 }
