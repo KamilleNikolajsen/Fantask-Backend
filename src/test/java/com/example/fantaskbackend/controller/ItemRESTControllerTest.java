@@ -78,9 +78,9 @@ class ItemRESTControllerTest {
                 .andExpect(jsonPath("$[0].title", is("Birds Flying High"))
                 );
 
-/*
     //https://www.baeldung.com/integration-testing-a-rest-api
 
+    /*
     @Test
     public void error404() throws IOException, ClientProtocolException {
 
@@ -96,5 +96,4 @@ class ItemRESTControllerTest {
                 equalTo(HttpStatus.SC_NOT_FOUND));
                 */
     }
-
 }
