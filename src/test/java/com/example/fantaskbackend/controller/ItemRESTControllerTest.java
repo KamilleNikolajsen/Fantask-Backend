@@ -68,7 +68,7 @@ class ItemRESTControllerTest {
         CrossSearchInput crossSearchInput = new CrossSearchInput("b", false, false, false,false, false, false, "7");
 
         this.mockMvc
-                .perform(post("/category/all")
+                .perform(post("http://localhost:8080/category/all")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(this.objectMapper.writeValueAsString(crossSearchInput)))
                 .andExpect(status()
