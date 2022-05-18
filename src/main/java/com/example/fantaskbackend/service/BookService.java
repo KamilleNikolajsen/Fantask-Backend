@@ -47,4 +47,8 @@ public class BookService {
         List<BookGenre> bookGenres = bookGenreRepository.findAll();
         return bookGenres;
     }
+
+    public Book getBook(Long id){
+        return bookRepository.findBookByBookId(id);
+    }
 }

@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 //@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class BookRESTControllerTest {
+class BookRepositoryTest {
 
   @Autowired
   private TestEntityManager testEntityManager;

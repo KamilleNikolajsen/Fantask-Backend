@@ -33,4 +33,9 @@ public class BookRESTController {
         List<BookGenre> bookGenres = bookService.getBookGenres();
         return bookGenres;
     }
+
+    @GetMapping("/book/{id}")
+    public Book getBook(@PathVariable Book book){
+        return bookService.getBook(book.getBookId());
+    }
 }
