@@ -30,6 +30,6 @@ public class LuceneIndexer implements ApplicationRunner {
                 .batchSizeToLoadObjects(50)
                 .threadsToLoadObjects(7);
 
-        indexer.startAndWait();
+        //indexer.startAndWait();
     }
 }
