@@ -35,7 +35,7 @@ public class BookRESTController {
     }
 
     @GetMapping("/book/{id}")
-    public Book getBook(@PathVariable Book book){
-        return bookService.getBook(book.getBookId());
+    public Book getBook(@PathVariable Long id){
+        return bookService.getBook(id);
     }
 }

@@ -2,6 +2,7 @@ package com.example.fantaskbackend.model.fkmodels;
 
 import com.example.fantaskbackend.model.Book;
 import com.example.fantaskbackend.model.Comic;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
@@ -29,6 +30,7 @@ public class Authors {
 
     private String web;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "authors")
     private Set<Book> books = new HashSet<>();
 
