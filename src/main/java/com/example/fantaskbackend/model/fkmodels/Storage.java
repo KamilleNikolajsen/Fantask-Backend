@@ -33,15 +33,19 @@ public class Storage {
   @OneToMany(mappedBy = "storage")
   private Set<Book> books = new HashSet<>();
 
+  @JsonBackReference
   @OneToMany(mappedBy = "storage")
   private Set<Comic> comics = new HashSet<>();
 
+  @JsonBackReference
   @OneToMany(mappedBy = "storage")
   private Set<Figure> figures = new HashSet<>();
 
+  @JsonBackReference
   @OneToMany(mappedBy = "storage")
   private Set<Film> films = new HashSet<>();
 
+  @JsonBackReference
   @OneToMany(mappedBy = "storage")
   private Set<Game> games = new HashSet<>();
 }
