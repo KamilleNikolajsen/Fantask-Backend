@@ -72,9 +72,9 @@ public class BookService {
     return bookCategories;
   }
 
-  public List<Authors> getBookAuthors(Long id) {
-    List<Authors> authors = authorsRepository.findAllBookAuthors(id);
-    return authors;
-  }
+ public List<String> getBookTypes() {
+    List<String> types = bookRepository.findAllTypes();
+    return types;
+ }
 
  }

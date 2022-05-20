@@ -120,10 +120,10 @@ public class BookRESTController {
     return bookCategories;
   }
 
-  @GetMapping("/book/authors/{id}")
-  public List<Authors> getBookAuthors(@PathVariable Long id) {
-    List<Authors> authors = bookService.getBookAuthors(id);
-    return authors;
+  @GetMapping("/book/types")
+  public List<String> getBookTypes() {
+    List<String> types = bookService.getBookTypes();
+    return types;
   }
 
   @GetMapping("/book/{id}")
