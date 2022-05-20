@@ -18,10 +18,10 @@ public class BookCategories {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
-  private Long bookCategoriesId;
+  private Long bookCategoryId;
 
-  @Column(nullable = false, name = "kategori_name")
-  private String categoriName;
+  @Column(nullable = false, name = "kategori_navn")
+  private String categoryName;
 
   @JsonBackReference
   @OneToMany(mappedBy = "bookCategory")

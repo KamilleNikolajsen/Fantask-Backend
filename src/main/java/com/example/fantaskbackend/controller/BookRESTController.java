@@ -1,7 +1,9 @@
 package com.example.fantaskbackend.controller;
 
 import com.example.fantaskbackend.model.Book;
+import com.example.fantaskbackend.model.fkmodels.BookCategories;
 import com.example.fantaskbackend.model.fkmodels.BookGenre;
+import com.example.fantaskbackend.model.fkmodels.BookSeries;
 import com.example.fantaskbackend.model.fkmodels.Publisher;
 import com.example.fantaskbackend.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,6 +111,16 @@ public class BookRESTController {
   public List<BookGenre> getBookGenres() {
     List<BookGenre> bookGenres = bookService.getBookGenres();
     return bookGenres;
+  }
+  @GetMapping("/book/series")
+  public List<BookSeries> getBookSeries() {
+    List<BookSeries> bookSeries = bookService.getBookSeries();
+    return bookSeries;
+  }
+  @GetMapping("/book/categories")
+  public List<BookCategories> getBookCategories() {
+    List<BookCategories> bookCategories = bookService.getBookCategories();
+    return bookCategories;
   }
 
   @GetMapping("/book/{id}")
