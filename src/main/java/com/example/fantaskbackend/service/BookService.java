@@ -1,15 +1,9 @@
 package com.example.fantaskbackend.service;
 
 import com.example.fantaskbackend.model.Book;
-import com.example.fantaskbackend.model.fkmodels.BookCategories;
-import com.example.fantaskbackend.model.fkmodels.BookGenre;
-import com.example.fantaskbackend.model.fkmodels.BookSeries;
-import com.example.fantaskbackend.model.fkmodels.Publisher;
+import com.example.fantaskbackend.model.fkmodels.*;
 import com.example.fantaskbackend.repository.BookRepository;
-import com.example.fantaskbackend.repository.fkrepositories.BookCategoryRepository;
-import com.example.fantaskbackend.repository.fkrepositories.BookGenreRepository;
-import com.example.fantaskbackend.repository.fkrepositories.BookSeriesRepository;
-import com.example.fantaskbackend.repository.fkrepositories.PublisherRepository;
+import com.example.fantaskbackend.repository.fkrepositories.*;
 import org.hibernate.search.mapper.orm.Search;
 import org.springframework.stereotype.Component;
 
@@ -25,16 +19,18 @@ public class BookService {
   private final BookGenreRepository bookGenreRepository;
   private final BookSeriesRepository bookSeriesRepository;
   private final BookCategoryRepository bookCategoryRepository;
+  private final AuthorsRepository authorsRepository;
 
   private final EntityManager entityManager;
 
-  public BookService(BookRepository bookRepository, PublisherRepository publisherRepository, BookGenreRepository bookGenreRepository, EntityManager entityManager, BookSeriesRepository bookSeriesRepository, BookCategoryRepository bookCategoryRepository) {
+  public BookService(BookRepository bookRepository, PublisherRepository publisherRepository, BookGenreRepository bookGenreRepository, EntityManager entityManager, BookSeriesRepository bookSeriesRepository, BookCategoryRepository bookCategoryRepository, AuthorsRepository authorsRepository) {
     this.bookRepository = bookRepository;
     this.publisherRepository = publisherRepository;
     this.bookGenreRepository = bookGenreRepository;
     this.entityManager = entityManager;
     this.bookSeriesRepository = bookSeriesRepository;
     this.bookCategoryRepository = bookCategoryRepository;
+    this.authorsRepository = authorsRepository;
   }
 
   public List<Book> searchFullText(Object searchInput) {
@@ -75,4 +71,10 @@ public class BookService {
     List<BookCategories> bookCategories = bookCategoryRepository.findAll();
     return bookCategories;
   }
+
+  public List<Authors> getBookAuthors(Long id) {
+    List<Authors> authors = authorsRepository.findAllBookAuthors(id);
+    return authors;
+  }
+
  }
