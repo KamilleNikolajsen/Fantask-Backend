@@ -18,7 +18,7 @@ public class BookRESTController {
   @Autowired
   BookService bookService;
 
-  @PostMapping("/category/book")
+  @PostMapping("/book")
   public List<Book> searchFullTextBook(@RequestBody Object searchBookInput) {
     List<Book> books = bookService.searchFullText(searchBookInput);
     return books;
@@ -99,13 +99,13 @@ public class BookRESTController {
     return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
   }
 
-  @GetMapping("/category/book/publisher")
+  @GetMapping("/book/publisher")
   public List<Publisher> getPublishers() {
     List<Publisher> publishers = bookService.getPublishers();
     return publishers;
   }
 
-  @GetMapping("/category/book/genre")
+  @GetMapping("/book/genre")
   public List<BookGenre> getBookGenres() {
     List<BookGenre> bookGenres = bookService.getBookGenres();
     return bookGenres;
