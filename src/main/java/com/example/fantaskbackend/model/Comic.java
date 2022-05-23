@@ -86,6 +86,9 @@ public class Comic {
     @Column(name = "dansk_pris", nullable = false)
     private String danishPrice;
 
+    @Column(name = "tilbudspris")
+    private String salePrice;
+
     @KeywordField
     private String ISBN;
 

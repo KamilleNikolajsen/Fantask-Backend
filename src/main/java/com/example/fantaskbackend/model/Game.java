@@ -77,6 +77,9 @@ public class Game {
     @Column(name = "pris")
     private String price;
 
+    @Column(name = "tilbudspris")
+    private String salePrice;
+
     @Column(name = "sværhedsgrad")
     private String difficulty;
 

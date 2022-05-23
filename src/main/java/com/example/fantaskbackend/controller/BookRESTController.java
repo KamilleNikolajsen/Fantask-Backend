@@ -18,6 +18,12 @@ public class BookRESTController {
   BookService bookService;
 
   @PostMapping("/book")
+  @ResponseStatus(HttpStatus.CREATED)
+  public Book saveBook(@RequestBody Book book) {
+    return bookService.saveBook(book);
+  }
+
+  @PostMapping("/category/book")
   public List<Book> searchFullTextBook(@RequestBody Object searchBookInput) {
     List<Book> books = bookService.searchFullText(searchBookInput);
     return books;

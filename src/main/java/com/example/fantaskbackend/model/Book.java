@@ -83,6 +83,9 @@ public class Book {
   @Column(name = "dansk_pris")
   private String danishPrice;
 
+  @Column(name = "tilbudspris")
+  private String salePrice;
+
   @Column(name = "udgivelsesår")
   private String yearOfPublication;
 

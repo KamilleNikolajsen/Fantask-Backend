@@ -58,6 +58,9 @@ public class Figure {
     @Column(name = "original_pris")
     private String originalPrice;
 
+    @Column(name = "tilbudspris")
+    private String salePrice;
+
     @Column(name = "beskrivelse")
     private String description;
 

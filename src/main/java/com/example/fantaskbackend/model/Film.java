@@ -61,6 +61,9 @@ public class Film {
     @Column(name = "pris")
     private String price;
 
+    @Column(name = "tilbudspris")
+    private String salePrice;
+
     @Column(name = "minutter")
     private Integer minutes;
 
