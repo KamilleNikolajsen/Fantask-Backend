@@ -1,7 +1,7 @@
 package com.example.fantaskbackend.model.fkmodels;
 
 import com.example.fantaskbackend.model.Book;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,7 +23,7 @@ public class BookCategories {
   @Column(nullable = false, name = "kategori_navn")
   private String categoryName;
 
-  @JsonBackReference
+  @JsonManagedReference(value = "bookCategory")
   @OneToMany(mappedBy = "bookCategory")
   private Set<Book> books = new HashSet<>();
 }

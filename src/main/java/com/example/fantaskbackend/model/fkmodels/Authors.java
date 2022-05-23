@@ -2,7 +2,9 @@ package com.example.fantaskbackend.model.fkmodels;
 
 import com.example.fantaskbackend.model.Book;
 import com.example.fantaskbackend.model.Comic;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
@@ -11,6 +13,9 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "authorId")
 @Entity
 @Table(name = "forfattere")
 @Getter
@@ -30,11 +35,11 @@ public class Authors {
 
     private String web;
 
-    @JsonBackReference
+    //@JsonManagedReference(value = "bookAuthors")
     @ManyToMany(mappedBy = "authors")
     private Set<Book> books = new HashSet<>();
 
-    @JsonBackReference
+   // @JsonManagedReference(value = "comicAuthors")
     @ManyToMany(mappedBy = "authors")
     private Set<Comic> comics = new HashSet<>();
 }

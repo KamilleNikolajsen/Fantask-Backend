@@ -1,6 +1,10 @@
 package com.example.fantaskbackend.model;
 
 import com.example.fantaskbackend.model.fkmodels.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.*;
@@ -10,6 +14,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "bookId")
 @Getter
 @Setter
 @Indexed
@@ -28,11 +35,13 @@ public class Book {
 
   @ManyToOne(fetch = FetchType.EAGER)
   @IndexedEmbedded
+  @JsonBackReference(value = "bookSeries")
   @JoinColumn(name = "fk_serie")
   private BookSeries bookSeries;
 
   @ManyToMany(fetch = FetchType.EAGER)
   @IndexedEmbedded
+  //@JsonManagedReference(value = "bookAuthors")
   @JoinTable(
       name = "forfatter_tegneserier_bog",
       joinColumns = {@JoinColumn(name = "fk_bog")},
@@ -40,20 +49,23 @@ public class Book {
   )
   private Set<Authors> authors = new HashSet<>();
 
-
   @ManyToOne()
+  @JsonBackReference(value = "bookPublisher")
   @JoinColumn(name = "fk_forlag")
   private Publisher publisher;
 
   @ManyToOne()
+  @JsonBackReference(value = "bookCategory")
   @JoinColumn(name = "fk_kategori")
   private BookCategories bookCategory;
 
   @ManyToOne()
+  @JsonBackReference(value = "bookGenre")
   @JoinColumn(name = "fk_genre")
   private BookGenre bookGenre;
 
   @ManyToOne
+  @JsonBackReference(value = "bookStorage")
   @JoinColumn(name = "fk_lager")
   private Storage storage;
 

@@ -1,6 +1,10 @@
 package com.example.fantaskbackend.model;
 
 import com.example.fantaskbackend.model.fkmodels.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.*;
@@ -15,6 +19,9 @@ import java.util.Set;
 @Getter
 @Setter
 @Indexed
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "comicId")
 public class Comic {
 
     @Id
@@ -28,6 +35,7 @@ public class Comic {
     private ComicSeries comicSeries;
 
     @ManyToOne()
+    @JsonBackReference(value = "comicPublisher")
     @JoinColumn(name = "fk_forlag")
     private Publisher publisher;
 
@@ -46,6 +54,7 @@ public class Comic {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @IndexedEmbedded
+   // @JsonManagedReference(value = "comicAuthors")
     @JoinTable(
             name = "forfatter_tegneserier_bog",
             joinColumns = {@JoinColumn(name = "fk_tegneserier")},
@@ -59,6 +68,7 @@ public class Comic {
     private ComicSubseries comicSubseries;
 
     @ManyToOne()
+    @JsonBackReference(value = "comicStorage")
     @JoinColumn(name = "fk_lager")
     private Storage storage;
 

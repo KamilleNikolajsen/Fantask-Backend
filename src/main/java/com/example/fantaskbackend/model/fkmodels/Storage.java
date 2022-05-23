@@ -1,7 +1,7 @@
 package com.example.fantaskbackend.model.fkmodels;
 
 import com.example.fantaskbackend.model.*;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,7 +18,7 @@ public class Storage {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
-  private Long StorageId;
+  private Long storageId;
 
   @Column(name = "barcode")
   private int storageBarcode;
@@ -29,23 +29,23 @@ public class Storage {
   @Column(name = "antal")
   private int storageAmount;
 
-  @JsonBackReference
+  @JsonManagedReference(value = "bookStorage")
   @OneToMany(mappedBy = "storage")
   private Set<Book> books = new HashSet<>();
 
-  @JsonBackReference
+  @JsonManagedReference(value = "comicStorage")
   @OneToMany(mappedBy = "storage")
   private Set<Comic> comics = new HashSet<>();
 
-  @JsonBackReference
+  @JsonManagedReference(value = "figureStorage")
   @OneToMany(mappedBy = "storage")
   private Set<Figure> figures = new HashSet<>();
 
-  @JsonBackReference
+  @JsonManagedReference(value = "filmStorage")
   @OneToMany(mappedBy = "storage")
   private Set<Film> films = new HashSet<>();
 
-  @JsonBackReference
+  @JsonManagedReference(value = "gameStorage")
   @OneToMany(mappedBy = "storage")
   private Set<Game> games = new HashSet<>();
 }

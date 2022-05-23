@@ -1,6 +1,7 @@
 package com.example.fantaskbackend.model;
 
 import com.example.fantaskbackend.model.fkmodels.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
@@ -36,6 +37,7 @@ public class Figure {
     private FigureSeries figureSeries;
 
     @ManyToOne()
+    @JsonBackReference(value = "figureStorage")
     @JoinColumn(name = "fk_lager")
     private Storage storage;
 

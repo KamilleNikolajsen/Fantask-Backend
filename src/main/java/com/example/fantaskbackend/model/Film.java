@@ -4,6 +4,7 @@ import com.example.fantaskbackend.model.fkmodels.FilmGenre;
 import com.example.fantaskbackend.model.fkmodels.FilmSeries;
 import com.example.fantaskbackend.model.fkmodels.FilmTypes;
 import com.example.fantaskbackend.model.fkmodels.Storage;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
@@ -42,6 +43,7 @@ public class Film {
     private FilmTypes filmType;
 
     @ManyToOne()
+    @JsonBackReference(value = "filmStorage")
     @JoinColumn(name = "fk_lager")
     private Storage storage;
 
