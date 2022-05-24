@@ -23,6 +23,11 @@ public class BookRESTController {
     return bookService.saveBook(book);
   }
 
+  @DeleteMapping("/book/{id}")
+  public void deleteBook(@PathVariable Long id){
+    bookService.deleteBook(id);
+  }
+
   @PostMapping("/category/book")
   public List<Book> searchFullTextBook(@RequestBody Object searchBookInput) {
     List<Book> books = bookService.searchFullText(searchBookInput);
