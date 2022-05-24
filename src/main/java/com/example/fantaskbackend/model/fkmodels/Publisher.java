@@ -59,7 +59,8 @@ public class Publisher {
   @OneToMany(mappedBy = "publisher")
   private Set<Book> books = new HashSet<>();
 
-  @JsonManagedReference(value = "comicPublisher")
+  //@JsonManagedReference(value = "comicPublisher")
+  @JsonBackReference(value = "comicPublisher")
   @OneToMany(mappedBy = "publisher")
   private Set<Comic> comics = new HashSet<>();
 }

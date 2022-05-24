@@ -41,7 +41,7 @@ public class Book {
 
   @ManyToMany(fetch = FetchType.EAGER)
   @IndexedEmbedded
-  //@JsonManagedReference(value = "bookAuthors")
+  @JsonManagedReference(value = "bookAuthors")
   @JoinTable(
       name = "forfatter_tegneserier_bog",
       joinColumns = {@JoinColumn(name = "fk_bog")},

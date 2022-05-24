@@ -2,6 +2,7 @@ package com.example.fantaskbackend.model.fkmodels;
 
 import com.example.fantaskbackend.model.Book;
 import com.example.fantaskbackend.model.Comic;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -36,10 +37,12 @@ public class Authors {
     private String web;
 
     //@JsonManagedReference(value = "bookAuthors")
+    @JsonBackReference(value = "bookAuthors")
     @ManyToMany(mappedBy = "authors")
     private Set<Book> books = new HashSet<>();
 
-   // @JsonManagedReference(value = "comicAuthors")
+    //@JsonManagedReference(value = "comicAuthors")
+    @JsonBackReference(value = "comicAuthors")
     @ManyToMany(mappedBy = "authors")
     private Set<Comic> comics = new HashSet<>();
 }
