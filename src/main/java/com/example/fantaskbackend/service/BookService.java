@@ -77,4 +77,7 @@ public class BookService {
     return types;
  }
 
- }
+  public void deleteBook(Long id) {
+    bookRepository.deleteById(id);
+  }
+}
