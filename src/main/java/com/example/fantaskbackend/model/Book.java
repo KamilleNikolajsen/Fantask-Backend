@@ -35,13 +35,13 @@ public class Book {
 
   @ManyToOne(fetch = FetchType.EAGER)
   @IndexedEmbedded
-  @JsonManagedReference(value = "bookSeries")
+  /*@JsonManagedReference(value = "bookSeries")*/
   @JoinColumn(name = "fk_serie")
   private BookSeries bookSeries;
 
   @ManyToMany(fetch = FetchType.EAGER)
   @IndexedEmbedded
-  @JsonManagedReference(value = "bookAuthors")
+  /*@JsonManagedReference(value = "bookAuthors")*/
   @JoinTable(
       name = "forfatter_tegneserier_bog",
       joinColumns = {@JoinColumn(name = "fk_bog")},
@@ -50,22 +50,22 @@ public class Book {
   private Set<Authors> authors = new HashSet<>();
 
   @ManyToOne()
-  @JsonManagedReference(value = "bookPublisher")
+  /*@JsonManagedReference(value = "bookPublisher")*/
   @JoinColumn(name = "fk_forlag")
   private Publisher publisher;
 
   @ManyToOne()
-  @JsonManagedReference(value = "bookCategory")
+  /*@JsonManagedReference(value = "bookCategory")*/
   @JoinColumn(name = "fk_kategori")
   private BookCategories bookCategory;
 
   @ManyToOne()
-  @JsonManagedReference(value = "bookGenre")
+  /*@JsonManagedReference(value = "bookGenre")*/
   @JoinColumn(name = "fk_genre")
   private BookGenre bookGenre;
 
   @ManyToOne
-  @JsonManagedReference(value = "bookStorage")
+  /*@JsonManagedReference(value = "bookStorage")*/
   @JoinColumn(name = "fk_lager")
   private Storage storage;
 
