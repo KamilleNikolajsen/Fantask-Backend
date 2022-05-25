@@ -3,13 +3,13 @@ package com.example.fantaskbackend;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Date;
-
 @Getter
 @AllArgsConstructor
 public class CrossSearchInput {
 
     private String ftsInput;
+
+    private String authorArtist;
 
     private boolean showComing;
 

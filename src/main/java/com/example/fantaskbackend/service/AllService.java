@@ -27,12 +27,50 @@ public class AllService {
         List<Object> objects = Search.session(entityManager)
                 .search(Arrays.asList(Book.class, Comic.class, Film.class, Figure.class, Game.class))
                 .where(f -> {
-                            BooleanPredicateClausesStep<?> query = f.bool()
-                                    .must(i -> i.match()
-                                            .fields("authors.authorName", "bookSeries.bookSeriesName", "comicSeries.comicSeriesName", "comicSubseries.comicSubseriesName", "figureSeries.figureSeriesName", "filmSeries.filmSeriesName", "gameSeries.gameSeriesName", "gameSubseries.gameSubseriesName", "number", "title")
-                                            .matching(searchInput.getFtsInput())
-                                            .fuzzy()
-                                    );
+                            BooleanPredicateClausesStep<?> query = f.bool();
+
+                            if (searchInput.getAuthorArtist() != null && !searchInput.getAuthorArtist().equals("")) {
+                                query.must(au -> au.bool()
+                                        .should(o -> o.match()
+                                                .fields("authors.authorName")
+                                                .matching(searchInput.getAuthorArtist())
+                                                .boost(4)
+                                        )
+                                        .should(o -> o.match()
+                                                .fields("authors.authorName")
+                                                .matching(searchInput.getAuthorArtist())
+                                                .fuzzy(1, 0)
+                                                .boost(3)
+                                        )
+                                        .should(o -> o.regexp()
+                                                .fields("authors.authorName")
+                                                .matching(searchInput.getAuthorArtist())
+                                                .boost(3)
+                                        )
+                                );
+                            }
+
+                            if (searchInput.getFtsInput() != null && !searchInput.getFtsInput().equals("")) {
+                                query.must(whut -> whut.bool()
+                                        .should(o -> o.match()
+                                                .fields("bookSeries.bookSeriesName", "comicSeries.comicSeriesName", "comicSubseries.comicSubseriesName", "figureSeries.figureSeriesName", "filmSeries.filmSeriesName", "gameSeries.gameSeriesName", "gameSubseries.gameSubseriesName", "number", "title")
+                                                .matching(searchInput.getFtsInput())
+                                                .boost(2)
+                                        )
+                                        .should(o -> o.match()
+                                                .fields("bookSeries.bookSeriesName", "comicSeries.comicSeriesName", "comicSubseries.comicSubseriesName", "figureSeries.figureSeriesName", "filmSeries.filmSeriesName", "gameSeries.gameSeriesName", "gameSubseries.gameSubseriesName", "number", "title")
+                                                .matching(searchInput.getFtsInput())
+                                                .fuzzy()
+                                        )
+                                        .should(o -> o.regexp()
+                                                .fields("bookSeries.bookSeriesName", "comicSeries.comicSeriesName", "comicSubseries.comicSubseriesName", "figureSeries.figureSeriesName", "filmSeries.filmSeriesName", "gameSeries.gameSeriesName", "gameSubseries.gameSubseriesName", "number", "title")
+                                                .matching(searchInput.getFtsInput())
+                                        )
+                                );
+
+
+                            }
+
 
                             //Drop down med tidsmodificering
 
@@ -90,6 +128,7 @@ public class AllService {
                             return query;
                         }
                 )
+                .sort(f -> f.score())
                 .fetchHits(50);
 
         List<CrossSearchItem> items = new ArrayList<>();

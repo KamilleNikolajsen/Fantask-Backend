@@ -65,7 +65,7 @@ class ItemRESTControllerTest {
 
         when(allService.searchCrossAll(any())).thenReturn(items);
 
-        CrossSearchInput crossSearchInput = new CrossSearchInput("b", false, false, false,false, false, false, "7");
+        CrossSearchInput crossSearchInput = new CrossSearchInput("b", "",false, false, false,false, false, false, "7");
 
         this.mockMvc
                 .perform(post("http://localhost:8080/category/all")
