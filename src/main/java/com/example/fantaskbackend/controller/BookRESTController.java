@@ -101,9 +101,9 @@ public class BookRESTController {
 
     //Skal check ske i service (Optinal classe bruges der i)??
     if (dbBook != null) {
-      bookService.saveBook(book);
+      Book updatedBook = bookService.saveBook(book);
 
-      return new ResponseEntity<>(dbBook, HttpStatus.OK);
+      return new ResponseEntity<>(updatedBook, HttpStatus.OK);
     }
 
     return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);

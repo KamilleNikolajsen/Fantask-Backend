@@ -30,8 +30,8 @@ public class Book {
   private Long bookId;
 
   @KeywordField
-  @Column(nullable = false, unique = true)
-  private String ISBN;
+  @Column(nullable = false, unique = true, name = "ISBN")
+  private String isbn;
 
   @ManyToOne(fetch = FetchType.EAGER)
   @IndexedEmbedded
